@@ -1,6 +1,6 @@
 import smtplib
 import datetime
-
+from time import sleep
 
 def sendMessages(hostUsername, hostPassword, victimPhoneEmail, message, numMessages):
 
@@ -11,7 +11,7 @@ def sendMessages(hostUsername, hostPassword, victimPhoneEmail, message, numMessa
 
 	# Send messages
 	for i in range(numMessages):
-		print "Message #: ",str(i + 1)
+		print("Message #: ",str(i + 1))
 		server.sendmail(hostUsername, victimPhoneEmail, message)
 
 
@@ -29,11 +29,13 @@ def setAlarm(hostUsername, hostPassword, victimRingTime, host_to_victim_timeDiff
 		victimHour = (hostHour + host_to_victim_timeDiff) % 24
 
 		# Pring present time info
-		print "Host Time:\t", str(hostHour) + ":" + str(hostMinute)
-		print "Victim Time:\t", str(victimHour) + ":" + str(hostMinute)
-		print "Alarm Time:\t", str(victimRingTime[0]) + ":" + str(victimRingTime[1])
-		print ""
+		print("Host Time:\t", str(hostHour) + ":" + str(hostMinute))
+		print("Victim Time:\t", str(victimHour) + ":" + str(hostMinute))
+		print("Alarm Time:\t", str(victimRingTime[0]) + ":" + str(victimRingTime[1]))
+		print("")
+		sleep(15)
 
+		
 		# If the victimRingTime is reached, then send texts
 		if (victimHour == victimRingTime[0]) and (hostMinute == victimRingTime[1]):
 
